@@ -1,0 +1,113 @@
+<html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>AXIANS Equipment Info</title>
+    <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+
+<script type="text/javascript">
+
+	function onToggle(table) {
+	 	
+		var c = document.getElementById(table).rows;
+		var i;
+		for (i = 1; i < c.length; i++) {
+			console.log(c[i]);
+  			c[i].classList.toggle('hidden');
+		}
+
+		var icons = document.getElementById(table).getElementsByTagName("img");
+		for (i = 0; i < icons.length; i++) {
+			console.log(icons[i]);
+  			icons[i].classList.toggle('hidden');
+		}
+	}
+	
+</script>
+
+
+<body>
+
+ <table width="100%" id="tab1">
+        <tr>
+        	<th colspan="2">
+        		<img onClick="JavaScript:onToggle('tab1');" src="png/maximize.svg" width="18px">
+        		<img onClick="JavaScript:onToggle('tab1');" class="hidden" src="png/minimize.svg" width="18px">
+        	
+        	Einbaumaße</th>
+        </tr>
+        <tr class="hidden">
+            <td>Einbaurichtung</td>
+            <td>links</td>
+        </tr>
+        <tr class="hidden">
+            <td>Höhe</td>
+            <td>2800 mm</td>
+        </tr>
+        <tr class="hidden">
+            <td>Breite</td>
+            <td>1551 mm</td>
+        </tr>
+  </table>
+
+
+
+   <table width="100%" id="tab2">
+        <tr>
+        	<th colspan="2">
+        		<img onClick="JavaScript:onToggle('tab2');" src="png/maximize.svg" width="18px">
+        		<img onClick="JavaScript:onToggle('tab2');" class="hidden" src="png/minimize.svg" width="18px">
+        	
+        	Lüftungsgitter</th>
+        </tr>
+        <tr class="hidden">
+            <td>GF- Lüftungsgitterart 1</td>
+            <td>X</td>
+        </tr>
+        <tr class="hidden">
+            <td>Anzahl Verriegelungszapfen</td>
+            <td>2</td>
+        </tr>
+        <tr class="hidden">
+            <td>Anzahl Verriegelungsteller</td>
+            <td>5</td>
+        </tr>
+  </table>
+
+
+
+  <table width="100%" id="tab3" class="attrib">
+        <tr>
+        	<th colspan="2">
+        		<img onClick="JavaScript:onToggle('tab3');" src="png/maximize.svg" width="18px">
+        		<img onClick="JavaScript:onToggle('tab3');" class="hidden" src="png/minimize.svg" width="18px">
+        	
+        	Kabelübergang</th>
+        </tr>
+        <tr class="hidden">
+            <td>Drucktaster</td>
+            <td>X</td>
+        </tr>
+        <tr class="hidden">
+            <td>Haftmagnet Gehflügel</td>
+            <td>RTW1</td>
+        </tr>
+        <tr class="hidden">
+            <td>Haftmagnet Stehflügel</td>
+            <td>8</td>
+        </tr>
+  </table>
+
+
+
+ 
+
+
+
+</body>
+
+</html>

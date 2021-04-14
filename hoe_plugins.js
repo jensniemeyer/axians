@@ -1,3 +1,64 @@
+onToggle = (table) => {        
+    var c = document.getElementById(table).rows;
+    var i;
+    for (i = 1; i < c.length; i++) {
+        console.log(c[i]);
+        c[i].classList.toggle('hidden');
+    }
+
+    var icons = document.getElementById(table).getElementsByTagName("img");
+    for (i = 0; i < icons.length; i++) {
+        console.log(icons[i]);
+        icons[i].classList.toggle('hidden');
+    }
+}
+
+
+
+const insertCode =() => {
+    console.info("Start inserting code :-)");
+
+    // create the stylesheet first -----------------
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = '.cssClass { background-color: red; color:white;border:1px solid green;width:300px }';
+    parent.document.getElementsByTagName('head')[0].appendChild(style);
+
+
+    // create a div ----------------------------------
+    var div = document.createElement("div");
+    div.className ="cssClass";
+    var p2    = document.createElement('p');
+    label   = document.createTextNode("My Div written completly from my IFrame :-)");
+    p2.appendChild(label);
+    div.appendChild(p2);
+    var content = parent.document.getElementById("simplejson_modal");
+    content.appendChild(div);
+}
+
+
+
+const createAttributeOverlay = () => {
+    var detailScreen =  document.getElementById('detailScreen');
+    detailScreen.className ="panelHidden";
+
+    var attributeSCreen =  document.getElementById('attributeScreen');
+    attributeSCreen.className ="panelVisible";
+
+}
+
+
+const showDetailScreen = () => {
+    var detailScreen =  document.getElementById('detailScreen');
+    detailScreen.className ="panelVisible";
+
+    var attributeSCreen =  document.getElementById('attributeScreen');
+    attributeSCreen.className ="panelHidden";
+
+}
+
+
+
 const newLine = (detailPanel, label, value) => {
     var p1    = document.createElement('p');
     var p2    = document.createElement('p');
@@ -34,6 +95,8 @@ const updateDetailPanel = (data) => {
     newLine (detailPanel, "Gebäude", data[0].eq.building);
     newLine (detailPanel, "Seriennummer", data[0].eq.serialNumber);
 
+    createPopupButton(detailPanel);
+
 }
 
 
@@ -61,9 +124,7 @@ const createAttachmentLinkElement = (url, text, type, id,  cloudHost, account, c
     a.title = text;
     a.setAttribute('href', "#");
     a.onclick= function() {
-        //window.alert("Clicked:"+id);
-      //  window.alert(`bearer ${sessionStorage.getItem('token')}`);
-        //let binaryData = await getAllActivityAttachments(cloudHost, account, company, activityID);
+
         downloadAttachments(cloudHost, account, company, id, type, text);
     };
     td.append(a);
@@ -71,9 +132,33 @@ const createAttachmentLinkElement = (url, text, type, id,  cloudHost, account, c
 }
 
 
-const download = () => {
-    window.alert("Downloading!");
+
+
+
+
+
+
+
+//
+// Loop before a token expire to fetch a new one
+//
+function initializeRefreshTokenStrategy(shellSdk, auth) {
+
+    shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_AUTHENTICATION, (event) => {
+        sessionStorage.setItem('token', event.access_token);
+        setTimeout(() => fetchToken(), (event.expires_in * 1000) - 5000);
+    });
+
+    function fetchToken() {
+        shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_AUTHENTICATION, {
+            response_type: 'token'  // request a user token within the context
+        });
+    }
+
+    sessionStorage.setItem('token', auth.access_token);
+    setTimeout(() => fetchToken(), (auth.expires_in * 1000) - 5000);
 }
+
 
 const updateAttachmentPanel = (data, cloudHost, account, company) => {
     var attachmentPanel =  document.getElementById('attachmentPanel');
@@ -121,6 +206,36 @@ function _arrayBufferToBase64( buffer ) {
 }
 
 
+
+
+// ----------------------------------------------------------
+// Popup Test
+// ----------------------------------------------------------
+
+function createPopupButton(table) {
+
+    var a = document.createElement('a');
+
+    var img = document.createElement('img');
+    img.src="png/next.svg";
+    img.width="18";
+
+
+
+    var linkText = document.createTextNode("Attribute");
+    a.appendChild(linkText);
+    a.appendChild(img);
+
+    a.title = "More info....";
+    a.setAttribute('href', "#");
+    a.onclick= function() {
+        createAttributeOverlay();
+         //window.open("", "More details on equiptment...");
+        //alert("hello");
+    };
+    table.append(a);
+
+}
 
 
 
@@ -230,7 +345,6 @@ function downloadAttachments(cloudHost, account, company, attachment_id, type, f
 
     return new Promise(resolve => {
 
-         // e.g.: https://de.coresuite.com/api/data/v4/Attachment/88B9D1FC7D2B4AEA8ABE67C638D8F5D3/content?account=hoermann-t1&user=jniemeyer&company=IntHoeMon&dtos=Attachment.16
         const result1 =  fetch(`https://${cloudHost}/api/data/v4/Attachment/`+attachment_id+`/content?account=${account}&company=${company}&dtos=Attachment.16`, {
             headers,
             method  :   'GET'

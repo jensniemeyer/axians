@@ -1,0 +1,51 @@
+<html>
+
+ <script data-require="jquery" data-semver="2.1.4" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<h1>This is the iFrame</h1>
+
+<script type="text/javascript">
+	
+	var content = parent.document.getElementById("content");
+	
+	var p1    = document.createElement('p');
+    
+    var label   = document.createTextNode("Halloooo!");
+
+    p1.appendChild(label);
+
+    content.appendChild(p1);
+
+
+    var root = content.getRootNode();
+
+
+	
+
+
+    function writeDiv() {
+    	// create CSS class ----------------------------
+	var style = document.createElement('style');
+	style.type = 'text/css';
+	style.innerHTML = '.cssClass { background-color: red; color:white;border:1px solid green;width:300px }';
+	parent.document.getElementsByTagName('head')[0].appendChild(style);
+
+
+    var div = document.createElement("div");
+    div.className ="cssClass";
+    var p2    = document.createElement('p');
+    label   = document.createTextNode("My Div written completly from my IFrame :-)");
+    p2.appendChild(label);
+    div.appendChild(p2);
+    content.appendChild(div);
+
+    }
+
+
+
+</script>
+
+
+<button type="button" onClick="JavaScript:writeDiv()" value="Write to parent!">Write to parent!</button>
+
+</html>

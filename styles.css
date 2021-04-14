@@ -1,0 +1,143 @@
+@font-face {
+    font-family: "72";
+    src: url('72-Regular-full.woff') format("woff")
+}
+
+.myLabel {
+    color: rgb(106, 109, 112);
+    display: block;
+    font-family: "72";
+    font-size: 12px;
+    height: 13.6364px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 0px;
+    margin-top: 12px;
+    text-align: left;
+    text-size-adjust: 100%;
+    -webkit-box-direction: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.myValue {
+    color: rgb(50, 54, 58);
+    display: inline-block;
+    font-family: "72";
+    font-size: 14px;
+    height: 16.3636px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    padding-bottom: 3px;
+    text-size-adjust: 100%;
+    white-space: pre-wrap;
+
+    -webkit-box-direction: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+
+
+
+
+img {
+    margin-left: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(10, 110, 209);
+    font-family: "72";
+    font-size: 12px;
+    height: 16.3636px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    padding-bottom: 3px;
+    text-size-adjust: 100%;
+    white-space: pre-wrap;
+
+    -webkit-box-direction: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+
+.panelHidden {
+    display : none;
+}
+
+.panelVisible {
+    display: block;
+}
+
+
+
+/* Table */
+table, td, th {
+    margin-bottom: 8px;
+    padding:4px;
+}
+
+th {
+    background-color: #E5F0FA;
+    margin-left:0;
+    padding-left:0;
+    color:black;
+    vertical-align:middle;
+    font-family: "72";
+    padding:3px;
+    color: rgb(50, 54, 58);
+    font-size:16px;
+    font-weight: normal;
+    text-transform:uppercase;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    color: rgb(106, 109, 112);
+    font-family: "72";
+    font-size: 12px;
+}
+
+tr:nth-child(even) {background: #f8f8f8
+}
+tr:nth-child(odd) {background: #FFF}
+
+th {
+    text-align: left;
+}
+
+td:nth-child(even) {
+    text-align: right;
+}
+
+td:nth-child(odd) {
+    text-align: left;
+}
+
+
+
+.hidden {
+    display: none;
+}
+
+
+.icon {
+    width:20px;
+}
+
+.attrib{
+    padding:4px
+}
